@@ -24,3 +24,10 @@ Route::get('/slow', function () {
 
     return view('slow');
 });
+
+Route::view('/page-with-lazy-loading-frame', 'page-with-lazy-loading-frame');
+Route::get('/lazy-loading-frame-content', function () {
+    sleep(2);
+
+    return view('lazy-loading-frame-content');
+});

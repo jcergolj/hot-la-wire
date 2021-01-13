@@ -9,4 +9,8 @@
     <br/>
     <br/>
     <a href="/slow">Simulate slow page</a>
+
+    <br/>
+    <br/>
+    <a href="/page-with-lazy-loading-frame">Page with lazy loading frame</a>
 @endsection
