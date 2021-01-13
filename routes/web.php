@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 
 Route::view('/', 'welcome');
 
@@ -30,4 +31,18 @@ Route::get('/lazy-loading-frame-content', function () {
     sleep(2);
 
     return view('lazy-loading-frame-content');
+});
+
+Route::view('/posts/{post}/edit', 'edit');
+
+Route::put('//posts/{post}/update', function (Request $request, $post) {
+    $validator = Validator::make($request->all(), ['title' => 'required']);
+
+    if ($validator->fails()) {
+        return response()->redirectTo('posts/1/edit')->withErrors($validator);
+    }
+
+    Session::put('post-title', $request->title);
+
+    return response()->redirectTo('posts/index');
 });
